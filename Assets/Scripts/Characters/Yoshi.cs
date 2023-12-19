@@ -35,6 +35,9 @@ public class Yoshi : Player
     private void Attack()
     {
         arrows[0].Launch();
+
+        // UŒ‚‰Â”\ƒtƒ‰ƒO‚ğ‰º‚ë‚·
+        canAttack = false;
     }
 
     protected override void LateUpdate()
