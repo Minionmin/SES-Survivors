@@ -45,8 +45,8 @@ Material:
     - _FaceRenderingMode: 0
     - _Occlusion: 1
     - _SourceBlend: 1
-    - _SpecSmoothness: 0.94
-    - _SpecStrength: 3.95
+    - _SpecSmoothness: 0
+    - _SpecStrength: 0
     - _SurfaceType: 2
     - _ZWrite: 1
     m_Colors:
