@@ -15,12 +15,11 @@ public class Player : MonoBehaviour, IMovement
     /// <summary> 攻撃のスタートポイント </summary>
     public Transform bulletSpawnPoint;
 
-    /// <summary> 所持している武器 </summary>
-    [SerializeField] private List<Arrow> arrows;
-
     #region Flag
     /// <summary> プレイヤーが移動しているかどうか </summary>
     protected bool isMoving = false;
+    /// <summary> プレイヤーが攻撃できるかどうか </summary>
+    protected bool canAttack = false;
     #endregion
 
     #region AnimatorParameter
@@ -70,8 +69,10 @@ public class Player : MonoBehaviour, IMovement
 
         if (attackCooldown <= 0)
         {
-            // 弾の方向・位置をリセット
-            arrows[0].Launch();
+            // 攻撃できるフラグを立てる
+            canAttack = true;
+
+            // 攻撃タイマーをリセット
             attackCooldown = attackCooldownMax;
         }
     }
