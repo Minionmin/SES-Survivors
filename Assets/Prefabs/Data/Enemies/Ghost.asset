@@ -15,6 +15,6 @@ MonoBehaviour:
   hp: 30
   power: 7
   stamina: 0
-  movespeed: 2.5
+  movespeed: 3
   rotateSpeed: 4
   maxDistanceOffset: 0.5

@@ -1,9 +1,6 @@
-using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IMovement
 {
     /// <summary> プレイヤーのインプットを処理するクラス </summary>
     [SerializeField] private PlayerControl playerControl;
@@ -58,8 +55,28 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    /// <summary> プレイヤーのステータスを初期化 </summary>
+    protected virtual void InitializeStat()
+    {
+        if(playerData != null)
+        {
+            hp = playerData.hp;
+            stamina = playerData.stamina;
+            movespeed = playerData.movespeed;
+            rotateSpeed = playerData.rotateSpeed;
+        }
+    }
+
+    /// <summary> インプットされた方向に回転 </summary>
+    /// <param name="targetDir"> 目的の方向 </param>
+    public void Rotate(Vector3 targetDir)
+    {
+        Quaternion targetAngle = Quaternion.LookRotation(targetDir, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetAngle, rotateSpeed);
+    }
+
     /// <summary> 移動 </summary>
-    protected void Move()
+    public void Move()
     {
         // 方向をゲット
         var dir = playerControl.GetMoveDirection();
@@ -87,26 +104,6 @@ public class Player : MonoBehaviour
             // 移動していなければそれに関するフラグをセットする
             isMoving = false;
             animator.SetBool(IS_MOVING, false);
-        }
-    }
-
-    /// <summary> インプットされた方向に回転 </summary>
-    /// <param name="targetDir"> 目的の方向 </param>
-    protected void Rotate(Vector3 targetDir)
-    {
-        Quaternion targetAngle = Quaternion.LookRotation(targetDir, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetAngle, rotateSpeed);
-    }
-
-    /// <summary> プレイヤーのステータスを初期化 </summary>
-    protected virtual void InitializeStat()
-    {
-        if(playerData != null)
-        {
-            hp = playerData.hp;
-            stamina = playerData.stamina;
-            movespeed = playerData.movespeed;
-            rotateSpeed = playerData.rotateSpeed;
         }
     }
 }

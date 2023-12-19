@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IMovement
 {
     /// <summary> 敵のステータスデータを格納しているScriptable Object </summary>
     [SerializeField] protected CharacterData enemyData;
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         // プレイヤーと重ならないように
         if (hasReached()) return;
         
-        Chase();
+        Move();
     }
 
     /// <summary> 敵のステータスを初期化 </summary>
@@ -51,14 +51,14 @@ public class Enemy : MonoBehaviour
 
     /// <summary> インプットの方向に回転 </summary>
     /// <param name="targetDir"> 目的の方向 </param>
-    protected void Rotate(Vector3 targetDir)
+    public void Rotate(Vector3 targetDir)
     {
         Quaternion targetAngle = Quaternion.LookRotation(targetDir, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetAngle, rotateSpeed);
     }
 
     /// <summary> プレイヤーを追いかける </summary>
-    protected void Chase()
+    public void Move()
     {
         // 移動方向を決める
         moveDir = (GameManager.Instance.player.transform.position - transform.position).normalized;
