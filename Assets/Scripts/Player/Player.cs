@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerControl playerControl;
 
     /// <summary> プレイヤーのステータスデータを格納しているScriptable Object </summary>
-    [SerializeField] protected PlayerData playerData;
+    [SerializeField] protected CharacterData playerData;
 
     /// <summary> プレイヤーのアニメーションコントローラ </summary>
     [SerializeField] protected Animator animator;
@@ -30,12 +30,10 @@ public class Player : MonoBehaviour
     protected float hp;
     /// <summary> プレイヤーのスタミナ </summary>
     protected float stamina;
-    /// <summary> プレイヤーの攻撃パワー </summary>
-    protected float power;
     /// <summary> プレイヤーの移動スピード </summary>
     protected float movespeed;
     /// <summary> プレイヤーの回転スピード </summary>
-    protected float rotateSpeed = 4;
+    protected float rotateSpeed;
     #endregion
 
     protected virtual void Awake()
@@ -75,6 +73,7 @@ public class Player : MonoBehaviour
             // プレイヤーを任意の方向に移動する
             transform.position += dir * movespeed * Time.deltaTime;
 
+            // 移動している方向に回転
             Rotate(dir);
 
             // Idle状態から移動したらアニメーションをセットする
@@ -91,6 +90,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary> インプットされた方向に回転 </summary>
+    /// <param name="targetDir"> 目的の方向 </param>
     protected void Rotate(Vector3 targetDir)
     {
         Quaternion targetAngle = Quaternion.LookRotation(targetDir, Vector3.up);
@@ -104,8 +105,8 @@ public class Player : MonoBehaviour
         {
             hp = playerData.hp;
             stamina = playerData.stamina;
-            power = playerData.power;
             movespeed = playerData.movespeed;
+            rotateSpeed = playerData.rotateSpeed;
         }
     }
 }

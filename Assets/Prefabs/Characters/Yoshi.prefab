@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerControl: {fileID: 5225357728029893720}
   playerData: {fileID: 11400000, guid: d35519001e0503443bad221c3911a2b5, type: 2}
+  animator: {fileID: 5280944089909888882}
 --- !u!1001 &6471342727977142784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,6 +147,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7123374617846695390}
     m_Modifications:
+    - target: {fileID: 1346280286530135773, guid: 60731acc63597774eb40cacc15811efb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1574358306093659838, guid: 60731acc63597774eb40cacc15811efb,
         type: 3}
       propertyPath: m_LocalPosition.x
