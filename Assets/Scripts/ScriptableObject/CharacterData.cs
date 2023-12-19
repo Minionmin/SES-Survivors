@@ -8,4 +8,5 @@ public class CharacterData : ScriptableObject
     public float stamina;
     public float movespeed;
     public float rotateSpeed;
+    public float maxDistanceOffset;
 }

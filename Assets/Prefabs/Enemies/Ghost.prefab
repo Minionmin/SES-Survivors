@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 927583063161412133}
   - component: {fileID: 7814946672340752606}
   - component: {fileID: 104142248222540985}
+  - component: {fileID: 6292695139771033123}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -174,6 +175,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.45
   m_Center: {x: 0, y: 0.55, z: 0}
+--- !u!114 &6292695139771033123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119601995176018916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309d6ace925a04846be49f8c60c0162d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 033abd66fc2d039428f44d648f887d39, type: 2}
 --- !u!1 &2291570541508687932
 GameObject:
   m_ObjectHideFlags: 0

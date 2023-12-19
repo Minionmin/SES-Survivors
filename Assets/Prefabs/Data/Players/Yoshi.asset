@@ -17,3 +17,4 @@ MonoBehaviour:
   stamina: 100
   movespeed: 10
   rotateSpeed: 4
+  maxDistanceOffset: 0
