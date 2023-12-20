@@ -52,6 +52,8 @@ public class Enemy : MonoBehaviour, IMovement, IDamageable
     protected float rotateSpeed;
     /// <summary> プレイヤーとの最大の距離 </summary>
     protected float maxDistanceOffset;
+    /// <summary> ドロップする経験値 </summary>
+    public int dropEXP {  get; protected set; }
     #endregion
 
     protected virtual void Awake()
@@ -83,6 +85,7 @@ public class Enemy : MonoBehaviour, IMovement, IDamageable
             movespeed = enemyData.movespeed;
             rotateSpeed = enemyData.rotateSpeed;
             maxDistanceOffset = enemyData.maxDistanceOffset;
+            dropEXP = enemyData.dropEXP;
         }
     }
 
@@ -135,6 +138,9 @@ public class Enemy : MonoBehaviour, IMovement, IDamageable
     {
         // 死亡フラグを立てる
         isDead = true;
+
+        // プレイヤーに経験値を与える
+        GameManager.Instance.GainPlayerEXP(this);
     }
 
     /// <summary> 倒された敵を非表示する </summary>

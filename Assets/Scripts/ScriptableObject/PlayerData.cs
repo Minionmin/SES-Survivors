@@ -8,5 +8,5 @@ public class PlayerData : ScriptableObject
     public float movespeed;
     public float rotateSpeed;
     public float attackCooldownMax;
-    public int startMaxEXP;
+    public int maxEXP;
 }

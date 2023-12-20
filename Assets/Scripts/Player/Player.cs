@@ -28,6 +28,12 @@ public class Player : MonoBehaviour, IMovement
     #endregion
 
     #region Stats
+    /// <summary> プレイヤーのレベル </summary>
+    public int lvl;//[HideInInspector] 
+    /// <summary> プレイヤーの現在のExp </summary>
+    public int exp;//[HideInInspector] 
+    /// <summary> プレイヤーの最大Exp </summary>
+    public int maxExp;//[HideInInspector] 
     /// <summary> プレイヤーの体力 </summary>
     protected int hp;
     /// <summary> プレイヤーのスタミナ </summary>
@@ -88,6 +94,9 @@ public class Player : MonoBehaviour, IMovement
     {
         if(playerData != null)
         {
+            lvl = 1;
+            exp = 0;
+            maxExp = playerData.maxEXP;
             hp = playerData.hp;
             stamina = playerData.stamina;
             movespeed = playerData.movespeed;

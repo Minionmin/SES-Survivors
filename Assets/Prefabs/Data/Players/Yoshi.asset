@@ -17,4 +17,4 @@ MonoBehaviour:
   movespeed: 5
   rotateSpeed: 20
   attackCooldownMax: 1
-  startMaxEXP: 27
+  maxEXP: 17
