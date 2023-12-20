@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// 移動機能を持つオブジェクト用のインタフェース
+/// <summary> 移動機能を持つオブジェクト用のインタフェース </summary>
 public interface IMovement
 {
     void Move();

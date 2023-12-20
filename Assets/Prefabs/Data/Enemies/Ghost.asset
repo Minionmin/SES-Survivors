@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6afb4c4a602429b4998797df24b3ef18, type: 3}
+  m_Script: {fileID: 11500000, guid: 57168d0f55278ab438df468feb68f6d3, type: 3}
   m_Name: Ghost
   m_EditorClassIdentifier: 
-  hp: 30
+  hp: 10
   power: 7
-  stamina: 0
   movespeed: 3
   rotateSpeed: 4
   maxDistanceOffset: 0.5
+  dropEXP: 3

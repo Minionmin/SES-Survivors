@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afb4c4a602429b4998797df24b3ef18, type: 3}
   m_Name: Yoshi
   m_EditorClassIdentifier: 
-  hp: 100
-  power: 0
-  stamina: 100
+  hp: 25
+  stamina: 40
   movespeed: 5
-  rotateSpeed: 4
-  maxDistanceOffset: 0
+  rotateSpeed: 20
+  attackCooldownMax: 1
+  startMaxEXP: 27

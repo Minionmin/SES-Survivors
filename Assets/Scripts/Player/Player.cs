@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IMovement
@@ -6,37 +7,48 @@ public class Player : MonoBehaviour, IMovement
     [SerializeField] private PlayerControl playerControl;
 
     /// <summary> プレイヤーのステータスデータを格納しているScriptable Object </summary>
-    [SerializeField] protected CharacterData playerData;
+    [SerializeField] protected PlayerData playerData;
 
     /// <summary> プレイヤーのアニメーションコントローラ </summary>
-    [SerializeField] protected Animator animator;
+    public Animator animator;
+
+    /// <summary> 攻撃のスタートポイント </summary>
+    public Transform bulletSpawnPoint;
 
     #region Flag
     /// <summary> プレイヤーが移動しているかどうか </summary>
     protected bool isMoving = false;
+    /// <summary> プレイヤーが攻撃できるかどうか </summary>
+    protected bool canAttack = false;
     #endregion
 
     #region AnimatorParameter
     protected const string IS_MOVING = "IsMoving"; // 移動しているかどうか
-    protected const string Attack = "Attack"; // 攻撃トリガー
-    protected const string Die = "Die"; // 死亡トリガー
+    protected const string DIE = "Die"; // 死亡トリガー
     #endregion
 
     #region Stats
     /// <summary> プレイヤーの体力 </summary>
-    protected float hp;
+    protected int hp;
     /// <summary> プレイヤーのスタミナ </summary>
     protected float stamina;
     /// <summary> プレイヤーの移動スピード </summary>
     protected float movespeed;
     /// <summary> プレイヤーの回転スピード </summary>
     protected float rotateSpeed;
+    /// <summary> プレイヤーの最大攻撃間隔 </summary>
+    protected float attackCooldownMax;
+    /// <summary> プレイヤーの攻撃間隔 </summary>
+    protected float attackCooldown;
     #endregion
 
     protected virtual void Awake()
     {
         // プレイヤーのステータスを初期化
         InitializeStat();
+
+        // 攻撃間隔の初期化
+        attackCooldown = attackCooldownMax;
     }
 
     protected virtual void Start()
@@ -47,6 +59,22 @@ public class Player : MonoBehaviour, IMovement
 
     protected virtual void Update()
     {
+        UpdateAttack();
+    }
+
+    /// <summary> 一定の間隔で攻撃する </summary>
+    private void UpdateAttack()
+    {
+        attackCooldown -= Time.deltaTime;
+
+        if (attackCooldown <= 0)
+        {
+            // 攻撃できるフラグを立てる
+            canAttack = true;
+
+            // 攻撃タイマーをリセット
+            attackCooldown = attackCooldownMax;
+        }
     }
 
     protected virtual void LateUpdate()
@@ -64,6 +92,7 @@ public class Player : MonoBehaviour, IMovement
             stamina = playerData.stamina;
             movespeed = playerData.movespeed;
             rotateSpeed = playerData.rotateSpeed;
+            attackCooldownMax = playerData.attackCooldownMax;
         }
     }
 
