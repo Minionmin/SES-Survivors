@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IMovement, IDamageable
 {
+    /// <summary> 敵が倒された時に打つイベント </summary>
+    public event Action OnEnemyDead;
+
     /// <summary> 敵のステータスデータを格納しているScriptable Object </summary>
     [SerializeField] protected EnemyData enemyData;
 
@@ -32,7 +36,7 @@ public class Enemy : MonoBehaviour, IMovement, IDamageable
     protected bool canMove => !isDead;
 
     /// <summary> 敵が倒されたかどうか </summary>
-    protected bool isDead = false;
+    public bool isDead = false;
     #endregion
 
     #region Stats
@@ -133,7 +137,8 @@ public class Enemy : MonoBehaviour, IMovement, IDamageable
         isDead = true;
     }
 
-    protected void Hide()
+    /// <summary> 倒された敵を非表示する </summary>
+    protected virtual void Hide()
     {
         // 影を落とさないようにする
         bodyRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -143,20 +148,27 @@ public class Enemy : MonoBehaviour, IMovement, IDamageable
 
         // 当たり判定を無効化にする
         sphereCollider.enabled = false;
+
+        // 敵が倒されたイベントを打つ
+        OnEnemyDead?.Invoke();
     }
 
-    public void Spawn()
+    /// <summary> 倒された敵を再度表示する </summary>
+    public virtual void Spawn()
     {
+        // ステータスを基に戻す
+        InitializeStat();
+
         // 死亡フラグを下ろす
         isDead = false;
+
+        // 影を落とす
+        bodyRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 
         // モデルを表示にする
         bodyRenderer.enabled = true;
 
         // 当たり判定を有効化にする
         sphereCollider.enabled = true;
-
-        // 影を落とす
-        bodyRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
     }
 }

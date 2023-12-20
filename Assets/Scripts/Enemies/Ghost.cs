@@ -39,4 +39,12 @@ public class Ghost : Enemy
     {
         material.SetFloat("_Dissolve", val);
     }
+
+    /// <summary> Ä“x¢Š«‚·‚é </summary>
+    public override void Spawn()
+    {
+        base.Spawn();
+
+        DOTween.To(() => 0.0f, Dissolve, 1.0f, 0.5f);
+    }
 }
