@@ -20,10 +20,14 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        // 各エネミーに倒された時のイベントに「召喚チェック」を登録
+        // 敵の初期化
         foreach (Enemy enemy in enemyList)
         {
+            // 各エネミーに倒された時のイベントに「召喚チェック」を登録
             enemy.OnEnemyDead += SpawnNextWave;
+
+            // 最初に敵の位置をランダムさせる
+            RandomEnemyPosition(enemy);
         }
     }
 
