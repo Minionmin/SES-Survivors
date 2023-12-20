@@ -873,6 +873,8 @@ MonoBehaviour:
   - {fileID: 2117212972}
   - {fileID: 1889406190}
   - {fileID: 2092205442}
+  spawnMaxDistance: 10
+  spawnMinDistance: 20
 --- !u!1001 &952488666
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,4 +13,10 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    /// <summary> プレイヤーの位置を取得 </summary>
+    public Vector3 GetPlayerPos()
+    {
+        return player.transform.position;
+    }
 }
