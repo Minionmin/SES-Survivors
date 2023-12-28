@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ using UnityEngine.Rendering;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    /// <summary> プレイヤーが経験値を得たイベント </summary>
+    public static event Action OnExpGained;
 
     /// <summary> プレイヤーの参照 </summary>
     public Player player;
@@ -36,6 +40,9 @@ public class GameManager : MonoBehaviour
         {
             LevelPlayerUp();
         }
+
+        // プレイヤが経験値を得たことに関する関数を呼ぶ
+        OnExpGained?.Invoke();
     }
 
     /// <summary> プレイヤーが既にレベルアップかどうか </summary>
