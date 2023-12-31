@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Yoshi : Player
 {
     /// <summary> 所持している武器 </summary>
-    [SerializeField] private List<Arrow> arrows;
+    public List<Arrow> arrows;
+
+    /// <summary> 矢数のバフ1を取得したかどうかのフラグ </summary>
+    public bool IsArrowI = false;
 
     protected override void Awake()
     {
@@ -34,7 +38,10 @@ public class Yoshi : Player
     /// <summary> 攻撃を始める </summary>
     private void Attack()
     {
-        arrows[0].Launch();
+        foreach (var arrow in arrows)
+        {
+            arrow.Launch();
+        }
 
         // 攻撃可能フラグを下ろす
         canAttack = false;
@@ -45,4 +52,6 @@ public class Yoshi : Player
         // 物理演算の移動
         base.LateUpdate();
     }
+
+
 }

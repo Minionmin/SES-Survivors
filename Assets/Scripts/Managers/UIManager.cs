@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
     /// <summary> ƒŒƒxƒ‹‚ÌUI </summary>
     public ExpUI expUI;
 
+    /// <summary> ƒoƒt‚ÌUI </summary>
+    public PerkUI perkUI;
+
     private void Awake()
     {
         Instance = this;

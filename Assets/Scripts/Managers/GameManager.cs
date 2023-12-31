@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     /// <summary> プレイヤーが経験値を得たイベント </summary>
     public static event Action OnExpGained;
 
+    /// <summary> プレイヤーがレベルアップした時のイベント </summary>
+    public static event Action OnLevelUp;
+
     /// <summary> プレイヤーの参照 </summary>
     public Player player;
 
@@ -61,6 +64,9 @@ public class GameManager : MonoBehaviour
         player.lvl++;
         player.exp = exceededExp;
         player.maxExp = CalculateMaxExp();
+
+        // プレイヤーがレベルアップするイベントを呼ぶ
+        OnLevelUp?.Invoke();
     }
 
     /// <summary> プレイヤーの次の最大経験値を計算する </summary>
